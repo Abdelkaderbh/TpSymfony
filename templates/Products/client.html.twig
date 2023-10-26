@@ -1,0 +1,36 @@
+<style>
+    ul{
+        list-style-type: none;
+    }
+    .products{
+        margin-left: 100px;
+    }
+    h3{
+        margin-left: 50px;
+    }
+</style>
+
+<ul>
+    {% for Client in Clients %}
+        {% set price = 0 %}
+        <li>
+          <h1> Client Name : </h1> <h3> {{ Client.nom | upper }} </h3>
+        </li>
+        <ul>
+        {% for Product in Products %}
+            {% if Client.id_c == Product.Id_Client %}
+
+                        <li class="products">
+                               {{ Product.Designation }}
+                            {% set price = price + Product.Price %}
+                        </li>
+            {% endif %}
+        {% endfor %}
+
+            <li>  <h4> Total Price is : </h4> {{ price }} </li>
+                </ul>
+
+    {% else %}
+        <strong> la Liste des Clients est vide </strong>
+    {% endfor %}
+</ul>
